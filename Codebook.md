@@ -78,4 +78,6 @@ Note that tidy data set satisfies the 3 conditions (as learnt from http://vita.h
 - Each observation forms a row.
 - Each type of observational unit forms a table.
 
+The tidy dataset contains 180 observations and 68 variables in total - 66 variables, 2 for subject and activity id.
+
 End of codebook
