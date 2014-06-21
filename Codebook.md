@@ -77,5 +77,5 @@ Note that tidy data set satisfies the 3 conditions (as learnt from http://vita.h
 - Each variable forms a column.
 - Each observation forms a row.
 - Each type of observational unit forms a table.
-- 
-## End of codebook
+
+End of codebook
