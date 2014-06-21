@@ -28,10 +28,10 @@ After unzipping, the data files are used by R program, which produces the tidy d
 All the processing is done by a single R program called run_analysis.R. It reads test and train data files, and related files describing labels for data sets and activity and subject data. The progrms combines these data sets and produces a tidy data set.
 
 
-Output Files
+**Output Files**
 
-The main outfile is written as tidyfile.txt in the working directory. It contains average values for variables per subject and activity sets.
+The main outfile is written as **tidyfile.txt** in the working directory. It contains average values for variables per subject and activity sets.
 
-This readme along with codebase.md and run_analysis is stored in a git hub repo.
+This readme along with *codebase.md* and *run_analysis* is stored in a git hub repo.
 
 
