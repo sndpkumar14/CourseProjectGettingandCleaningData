@@ -14,19 +14,31 @@ Test and Train Data Description
 
 Each of test and train data files contain a number of variables. These have been combined with activity and subject data.
 
-Test Data has 3 main files:
+**Test Data** has 3 main files:
 - X_test.txt
 - y_test.txt
 - subject_test.txt
 
 Test Data has 2947 observations amd 561 column variables.
 
-Train Data has 3 main filed:
+**Train Data** has 3 main filed:
 - X-train.txt
 - y_train.txt
 - subject_train.txt
 
 Train Data has 7352 observations and 561 column variables.
+
+
+**Activity Data** has 6 types of activities:
+- 1 WALKING
+- 2 WALKING_UPSTAIRS
+- 3 WALKING_DOWNSTAIRS
+- 4 SITTING
+- 5 STANDING
+- 6 LAYING
+
+** Subject Data** has id of subjects which provided the observations.
+
 
 There are 2 outputs - one long dataset and one **tidy** dataset
 
@@ -39,3 +51,31 @@ Long Dataset contains following columns
 
 Tidy dataset contains *average* values per set of subject and activity.
 
+The *t* prefix indicates time domain signals, while *f* prefix indicates frequency domain signals.
+
+The columns contain average values of the following variables:
+- tBodyAcc-XYZ
+- tGravityAcc-XYZ
+- tBodyAccJerk-XYZ
+- tBodyGyro-XYZ
+- tBodyGyroJerk-XYZ
+- tBodyAccMag
+- tGravityAccMag
+- tBodyAccJerkMag
+- tBodyGyroMag
+- tBodyGyroJerkMag
+- fBodyAcc-XYZ
+- fBodyAccJerk-XYZ
+- fBodyGyro-XYZ
+- fBodyAccMag
+- fBodyAccJerkMag
+- fBodyGyroMag
+- fBodyGyroJerkMag
+
+Note that tidy data set satisfies the 3 conditions (as learnt from http://vita.had.co.nz/papers/tidy-data.pdf):
+
+- Each variable forms a column.
+- Each observation forms a row.
+- Each type of observational unit forms a table.
+- 
+## End of codebook
