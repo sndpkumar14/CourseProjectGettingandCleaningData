@@ -52,9 +52,10 @@ run_analysis <- function() {
 	colnames(xtotal) <- ycols[,2]
 
 ## Extract only the measurements on the mean and standard deviation for each measurement
-## subset select columns only
+## set variables strings
 
 	myvars <- c("tBodyAcc-mean()-X","tBodyAcc-mean()-Y","tBodyAcc-mean()-Z","tBodyAcc-std()-X","tBodyAcc-std()-Y","tBodyAcc-std()-Z","tGravityAcc-mean()-X","tGravityAcc-mean()-Y","tGravityAcc-mean()-Z","tGravityAcc-std()-X","tGravityAcc-std()-Y","tGravityAcc-std()-Z","tBodyAccJerk-mean()-X","tBodyAccJerk-mean()-Y","tBodyAccJerk-mean()-Z","tBodyAccJerk-std()-X","tBodyAccJerk-std()-Y","tBodyAccJerk-std()-Z","tBodyGyro-mean()-X","tBodyGyro-mean()-Y","tBodyGyro-mean()-Z","tBodyGyro-std()-X","tBodyGyro-std()-Y","tBodyGyro-std()-Z","tBodyGyroJerk-mean()-X","tBodyGyroJerk-mean()-Y","tBodyGyroJerk-mean()-Z","tBodyGyroJerk-std()-X","tBodyGyroJerk-std()-Y","tBodyGyroJerk-std()-Z","tBodyAccMag-mean()","tBodyAccMag-std()","tBodyAccJerkMag-mean()","tBodyAccJerkMag-std()","tBodyGyroMag-mean()","tBodyGyroMag-std()","fBodyAcc-mean()-X","fBodyAcc-mean()-Y","fBodyAcc-mean()-Z","fBodyAcc-std()-X","fBodyAcc-std()-Y","fBodyAcc-std()-Z","fBodyAccJerk-mean()-X","fBodyAccJerk-mean()-Y","fBodyAccJerk-mean()-Z","fBodyAccJerk-std()-X","fBodyAccJerk-std()-Y","fBodyAccJerk-std()-Z","fBodyGyro-mean()-X","fBodyGyro-mean()-Y","fBodyGyro-mean()-Z","fBodyGyro-std()-X","fBodyGyro-std()-Y","fBodyGyro-std()-Z","fBodyGyro-meanFreq()-X","fBodyGyro-meanFreq()-Y","fBodyGyro-meanFreq()-Z","fBodyAccMag-mean()","fBodyAccMag-std()","fBodyBodyAccJerkMag-mean()","fBodyBodyAccJerkMag-std()","fBodyBodyAccJerkMag-meanFreq()","fBodyBodyGyroMag-mean()","fBodyBodyGyroMag-std()","fBodyBodyGyroMag-meanFreq()","fBodyBodyGyroJerkMag-meanFreq()", "suid", "acid")
+	newvars <- c("avg_tBodyAcc-mean()-X","avg_tBodyAcc-mean()-Y","avg_tBodyAcc-mean()-Z","avg_tBodyAcc-std()-X","avg_tBodyAcc-std()-Y","avg_tBodyAcc-std()-Z","avg_tGravityAcc-mean()-X","avg_tGravityAcc-mean()-Y","avg_tGravityAcc-mean()-Z","avg_tGravityAcc-std()-X","avg_tGravityAcc-std()-Y","avg_tGravityAcc-std()-Z","avg_tBodyAccJerk-mean()-X","avg_tBodyAccJerk-mean()-Y","avg_tBodyAccJerk-mean()-Z","avg_tBodyAccJerk-std()-X","avg_tBodyAccJerk-std()-Y","avg_tBodyAccJerk-std()-Z","avg_tBodyGyro-mean()-X","avg_tBodyGyro-mean()-Y","avg_tBodyGyro-mean()-Z","avg_tBodyGyro-std()-X","avg_tBodyGyro-std()-Y","avg_tBodyGyro-std()-Z","avg_tBodyGyroJerk-mean()-X","avg_tBodyGyroJerk-mean()-Y","avg_tBodyGyroJerk-mean()-Z","avg_tBodyGyroJerk-std()-X","avg_tBodyGyroJerk-std()-Y","avg_tBodyGyroJerk-std()-Z","avg_tBodyAccMag-mean()","avg_tBodyAccMag-std()","avg_tBodyAccJerkMag-mean()","avg_tBodyAccJerkMag-std()","avg_tBodyGyroMag-mean()","avg_tBodyGyroMag-std()","avg_fBodyAcc-mean()-X","avg_fBodyAcc-mean()-Y","avg_fBodyAcc-mean()-Z","avg_fBodyAcc-std()-X","avg_fBodyAcc-std()-Y","avg_fBodyAcc-std()-Z","avg_fBodyAccJerk-mean()-X","avg_fBodyAccJerk-mean()-Y","avg_fBodyAccJerk-mean()-Z","avg_fBodyAccJerk-std()-X","avg_fBodyAccJerk-std()-Y","avg_fBodyAccJerk-std()-Z","avg_fBodyGyro-mean()-X","avg_fBodyGyro-mean()-Y","avg_fBodyGyro-mean()-Z","avg_fBodyGyro-std()-X","avg_fBodyGyro-std()-Y","avg_fBodyGyro-std()-Z","avg_fBodyGyro-meanFreq()-X","avg_fBodyGyro-meanFreq()-Y","avg_fBodyGyro-meanFreq()-Z","avg_fBodyAccMag-mean()","avg_fBodyAccMag-std()","avg_fBodyBodyAccJerkMag-mean()","avg_fBodyBodyAccJerkMag-std()","avg_fBodyBodyAccJerkMag-meanFreq()","avg_fBodyBodyGyroMag-mean()","avg_fBodyBodyGyroMag-std()","avg_fBodyBodyGyroMag-meanFreq()","avg_fBodyBodyGyroJerkMag-meanFreq()", "suid", "acid")
 
 ## subset only the required columns
 	xtotal <- xtotal[, myvars]
@@ -64,12 +65,12 @@ run_analysis <- function() {
 ## activitylist <- c("WALKING", "WALKING_UPSTAIRS", "WALKING_DOWNSTAIRS", "SITTING", "STANDING", "LAYING")
 ## subjectlist <- unique(strain) 30 subjects
 
-	xmelt <- melt(xtotal, id.vars=c("suid", "acid"))
-	xtidy <- dcast(data = xmelt, suid+acid ~ myvars, mean)
-	colnames(xtidy) <- c("subject", "activity", "Values", "Values")
+	xmelt <- melt(xtotal, id.vars=c("suid", "acid"), measure.vars=myvars)
+	xtidy <- dcast(data = xmelt, suid+acid ~ myvars, mean, value.vars = newvars)
+	colnames(xtidy) <- c("subject", "activity", newvars)
 
 ## write a file with tidy data set
-	filename <- c("tidyfile")
+	filename <- c("tidyfile.txt")
 	write.table(xtidy, file = filename, row.names=FALSE, col.names=TRUE, quote = FALSE)
 
 
